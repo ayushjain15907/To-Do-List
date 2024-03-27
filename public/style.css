@@ -1,0 +1,118 @@
+.completed .item-text {
+    text-decoration: line-through;
+}
+
+h1{
+    color:#937DC2;
+}
+body{
+  
+    display:flex;
+    margin:0;
+    text-align:center;
+    justify-content:center;
+    height:100vh;
+    font-family: cursive;
+    background:#F3FDE8;
+    padding-bottom:50px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+}
+.container {
+    
+    
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* This hides overflowing content */
+    border-radius:5%;
+    border: 3px solid #937DC2;
+    margin:5px;
+    padding-bottom:10px;
+    margin-bottom:55px;
+    
+  }
+.flexible-list {
+    flex-grow: 1; /* Allow the list to grow and take up remaining space */
+    overflow-y: auto; /* Enable scrolling if content overflows vertically */
+    background:white;
+  }
+
+    
+ 
+button{
+    background-color:#FFE6F7;
+    border-color:#937DC2;
+    border-radius: 15%;
+    border-width: 3px;
+}
+
+form {
+    display: flex;
+    align-items: center; /* Align items vertically within the form */
+  }
+  
+input[type="text"] {
+    
+    flex-grow: 1; /* Allow input to take remaining width */
+    height: 40px;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc; /* Add a border for styling */
+    border-radius: 5px; /* Add rounded corners */
+  }
+  
+  .submitButton {
+    height: 40px;
+    width:40px;
+    text-align:center;
+    justify-content:center;
+    font-size: 16px;
+    
+    background-color: #FFABE1;
+    color:#836096;
+    border-radius: 25px;
+    border-color:#937DC2;
+    
+    border-width:2px;
+    margin-left: 1px; /* Add some space between input and button */
+  }
+  footer {
+    text-align: center;
+    margin-top:10px;
+    background-color: #937DC2;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+hr{ 
+  width:auto;
+}
+ul{
+  padding-left:0;
+  margin-left:5px;
+}
+li{
+  color:#FFABE1;
+  font-weight:bold;
+  font-size:x-large;
+  display: flex; 
+  align-items: center; 
+  padding:10px 0;
+}
+input[type="checkbox"] {
+  margin-left:15px;
+  margin-right: 40px; 
+}
+
+
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        // This code block runs when the document (web page) is fully loaded and ready.
+
+        $('input[type="checkbox"]').change(function () {
+        // This code block is executed when a checkbox input's state changes (when you click the checkbox).
+
+        // We're selecting all checkbox inputs using their type attribute, specifically "checkbox".
+        // The change event is triggered whenever a checkbox is clicked and its state changes.
+
+        const itemName = $(this).siblings('.item-text').text().trim();
+        // We're getting the text content of the sibling element with the class "item-text".
+        // The checkbox is a sibling of the element with class "item-text".
+        // This is done to associate the checkbox with the text content of the to-do item.
+
+        $.post('/toggleCheckbox', { itemName: itemName }, function () {
+            // We're making an AJAX POST request to the '/toggleCheckbox' endpoint on the server.
+            // The itemName (text content of the to-do item) is sent as data in the request.
+
+            console.log(`Checkbox state for "${itemName}" toggled.`);
+            // We're logging a message to the browser's console indicating that the checkbox state has been toggled.
+
+            // After the checkbox state is toggled on the server, we will update the visual appearance.
+        });
+
+        $(this).parent().toggleClass('completed');
+        // We're toggling the 'completed' class on the parent element of the clicked checkbox.
+        // This is done to visually indicate that the item is completed (using the 'completed' class).
+
+        // The $(this) refers to the checkbox that triggered the change event.
+        });
+        });
+
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+    <h1><%= Today %></h1>
+    <div class="flexible-list">
+    <ul>
+        <% for (let i = 0; i < allItems.length; i++) { %>
+            <li type="none" class="<%= checkboxState[allItems[i]] ? 'completed' : '' %>">
+                <input type="checkbox" class="chk" <% if (checkboxState[allItems[i]]) { %>checked<% } %> >
+                <span class="item-text"><%= allItems[i] %></span>
+            </li>
+            <hr  color=#DBC4F0>
+        <% } %>
+    </ul>
+    </div>
+    <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="Add new Item" autocomplete="off">
+        <button class="submitButton"type="submit">+</button>
+    </form>
+    </div>
+    <footer>
+        <p>&#169 <%= year %> made by Ayush jain</p>
+    </footer>   
+    </body>
+
+    
+</html>
+
+  
+
+<%#  Exaplining of the code inside script tag
+
+Here's a step-by-step breakdown of what's happening:
+
+1. When the document is ready ($(document).ready(function () {...}), the code inside this block will be executed. This ensures that the JavaScript code runs after the HTML document is fully loaded and ready to be manipulated.
+
+2. $('input[type="checkbox"]').change(function () {...}: This part selects all checkbox inputs on the page using the jQuery selector input[type="checkbox"]. It then attaches a change event handler function to each checkbox.
+
+3. Inside the change event handler function, $(this) refers to the checkbox that was clicked.
+
+4. $(this).siblings('.item-text').text().trim();: This line selects the sibling element with the class item-text of the clicked checkbox, retrieves its text content, and trims any leading or trailing whitespace.
+
+5. $.post('/toggleCheckbox', { itemName: itemName }, function () {...});: This line sends an AJAX POST request to the server's /toggleCheckbox endpoint with the itemName data (the text content of the to-do item). After the server processes the request, the callback function inside the $.post call will be executed. In this case, it logs a message to the console.
+
+6. $(this).parent().toggleClass('completed');: This line toggles the completed class on the parent element of the clicked checkbox. This class is used to style the completed to-do items with a line-through effect.
+%>
